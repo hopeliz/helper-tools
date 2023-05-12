@@ -14,10 +14,10 @@ function investigateURL() {
 
     // Check if URL starts with ww...
     if (parsedURL[2].split(".")[0][0] != "w" && parsedURL[2].split(".")[0][1] != "w" && parsedURL[2].length > 3) {
-        domain = parsedURL[2].split(".")[0] + "." + parsedURL[2].split(".")[1];
+        domain = `${parsedURL[2].split(".")[0]}.${parsedURL[2].split(".")[1]}`;
     }
     else {
-        domain = parsedURL[2].split(".")[1] + "." + parsedURL[2].split(".")[2];
+        domain = `${parsedURL[2].split(".")[1]}.${parsedURL[2].split(".")[2]}`;
         subdomain = parsedURL[2].split(".")[0];
     }
 
@@ -41,7 +41,7 @@ function investigateURL() {
         // Get file type and file name
         if (lastPieceParsed[lastPieceParsed.length - 1].length <= 4) {
             fileType = lastPieceParsed[lastPieceParsed.length - 1];
-            fileName = lastPieceParsed[lastPieceParsed.length - 2] + "." + fileType;
+            fileName = `${lastPieceParsed[lastPieceParsed.length - 2]}.${fileType}`;
         }
     }
         
