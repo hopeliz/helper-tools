@@ -36,7 +36,8 @@ p { margin-bottom: 5px; }
 #subdomain-results,
 #filename-results,
 #filetype-results,
-#alias-results {
+#alias-results,
+#dates-results{
     display: flex;
     align-items: center;
 }
