@@ -149,7 +149,7 @@ function investigateURL() {
     document.getElementById("domain-text").innerHTML = domain;
     document.getElementById("subdomain-text").innerHTML = subdomain;
     document.getElementById("filename-text").innerHTML = fileName;
-    document.getElementById("filetype-text").innerHTML = fileType;
+    document.getElementById("filetype-text").innerHTML = fileType + " - " + getFileTypeInfo(fileType);
     document.getElementById("alias-text").innerHTML = alias;
     document.getElementById("title-text").innerHTML = title;
     
