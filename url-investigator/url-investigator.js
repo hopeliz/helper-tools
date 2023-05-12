@@ -147,19 +147,39 @@ function investigateURL() {
 
     // Print results
     document.getElementById("domain-text").innerHTML = domain;
-    document.getElementById("subdomain-text").innerHTML = subdomain;
-    document.getElementById("filename-text").innerHTML = fileName;
-    document.getElementById("filetype-text").innerHTML = fileType + " - " + getFileTypeInfo(fileType);
-    document.getElementById("alias-text").innerHTML = alias;
+    
+    if (subdomain != "www") {
+        document.getElementById("subdomain-container").style.display = "block";
+        document.getElementById("subdomain-text").innerHTML = subdomain;
+    }
+    
+    if (fileName != "") {
+        document.getElementById("filename-container").style.display = "block";
+        document.getElementById("filename-text").innerHTML = fileName;
+    }
+    
+    if (fileType != "") {
+        document.getElementById("filetype-container").style.display = "block";
+        document.getElementById("filetype-text").innerHTML = fileType + " - " + getFileTypeInfo(fileType);
+    }
+    
+    if (alias != "") {
+        document.getElementById("alias-container").style.display = "block";
+        document.getElementById("alias-text").innerHTML = alias;
+    }
+    
     document.getElementById("title-text").innerHTML = title;
     
-    for (let i = 0; i < dates.length; i++) {
-        if (dates[i] instanceof Date) {
-            if (dates[i].getDate())
-            document.getElementById("dates-text").innerHTML += `<p>${monthNames[dates[i].getMonth()]} ${dates[i].getDate()}, ${dates[i].getFullYear()}</p>`;
-        }
-        else {
-            document.getElementById("dates-text").innerHTML += `<p>${dates[i]}</p>`;
+    if (dates.length > 0) {
+        document.getElementById("dates-container").style.display = "block";
+        for (let i = 0; i < dates.length; i++) {
+            if (dates[i] instanceof Date) {
+                if (dates[i].getDate())
+                document.getElementById("dates-text").innerHTML += `<p>${monthNames[dates[i].getMonth()]} ${dates[i].getDate()}, ${dates[i].getFullYear()}</p>`;
+            }
+            else {
+                document.getElementById("dates-text").innerHTML += `<p>${dates[i]}</p>`;
+            }
         }
     }
 }

@@ -31,13 +31,23 @@ p { margin-bottom: 5px; }
     padding: 25px;
 }
 
+#title-container, 
+#domain-container,
+#subdomain-container,
+#filename-container,
+#filetype-container,
+#alias-container,
+#dates-container {
+    display: none;
+}
+
 #title-results, 
 #domain-results,
 #subdomain-results,
 #filename-results,
 #filetype-results,
 #alias-results,
-#dates-results{
+#dates-results {
     display: flex;
     align-items: center;
 }
