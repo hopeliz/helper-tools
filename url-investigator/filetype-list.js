@@ -164,6 +164,7 @@ const fileTypes = [
 console.log(fileTypes);
     
 function getFileTypeInfo(ext) {
+    ext = ext.toLowerCase();
     for (let x in fileTypes) {
         if (fileTypes[x].extension == ext) {
             return fileTypes[x].type;
