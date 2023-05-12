@@ -1,0 +1,50 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: content-box;
+}
+
+body { font-family: Arial, sans-serif; }
+
+form { margin: 25px; }
+
+#url { width: 100%; }
+
+input {
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+h2 {
+    margin-left: 25px;
+    font-size: 14pt;
+}
+
+p { margin-bottom: 5px; }
+
+#results { display: hidden; }
+
+.results {
+    background-color: #eee;
+    margin: 25px 10px 25px 25px;
+    border-radius: 7px;
+    padding: 25px;
+}
+
+#title-results, 
+#domain-results,
+#subdomain-results,
+#filename-results,
+#filetype-results,
+#alias-results {
+    display: flex;
+    align-items: center;
+}
+
+.results-text { width: 100%; }
+
+i {
+    margin-left: 15px;
+    font-size: 16pt;
+    text-align: right;
+}

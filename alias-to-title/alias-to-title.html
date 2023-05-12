@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Alias to Title Tool</title>
+    <script src="https://kit.fontawesome.com/6a530a4831.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="alias-to-title.js"></script>
+<body>
+    <form id="alias-form">
+        <p><label for="alias">Alias: </label></p>
+        <input type="text" id="alias" name="alias"><br>
+        <input type="button" value="Create Title" onclick="createTitle()">
+    </form>
+    
+    <div id="title-area">
+        <div id="title-text"></div>
+        <i class="fa-regular fa-copy" onclick="copyToClipboard()"></i>
+    </div>
+</body>
+</html>

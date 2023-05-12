@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>URL Investigator</title>
+    <script src="https://kit.fontawesome.com/6a530a4831.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="url-investigator.js"></script>
+</head>
+<body>
+    <form id="url-form">
+        <p><label for="url">URL: </label></p>
+        <input type="text" id="url" name="url"><br>
+        <input type="button" value="Investigate" onclick="investigateURL()">
+    </form>
+    
+    <h2>Domain:</h2>
+    <div id="domain-results" class="results">
+        <div id="domain-text" class="results-text"></div>
+        <i class="fa-regular fa-copy" onclick="copyToClipboard('domain-text')"></i>
+    </div>
+    
+    <h2>Subdomain:</h2>
+    <div id="subdomain-results" class="results">
+        <div id="subdomain-text" class="results-text"></div>
+        <i class="fa-regular fa-copy" onclick="copyToClipboard('subdomain-text')"></i>
+    </div>
+    
+    <h2>File Name:</h2>
+    <div id="filename-results" class="results">
+        <div id="filename-text" class="results-text"></div>
+        <i class="fa-regular fa-copy" onclick="copyToClipboard('filename-text')"></i>
+    </div>
+    
+    <h2>File Type:</h2>
+    <div id="filetype-results" class="results">
+        <div id="filetype-text" class="results-text"></div>
+        <i class="fa-regular fa-copy" onclick="copyToClipboard('filetype-text')"></i>
+    </div>
+    
+    <h2>Alias/Slug:</h2>
+    <div id="alias-results" class="results">
+        <div id="alias-text" class="results-text"></div>
+        <i class="fa-regular fa-copy" onclick="copyToClipboard('alias-text')"></i>
+    </div>
+    
+    <h2>Try to Search:</h2>
+    <div id="title-results" class="results">
+        <div id="title-text" class="results-text"></div>
+        <i class="fa-regular fa-copy" onclick="copyToClipboard('title-text')"></i>
+    </div>
+    
+</body>
+</html>

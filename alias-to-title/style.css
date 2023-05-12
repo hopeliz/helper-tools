@@ -1,0 +1,32 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: content-box;
+}
+
+body { font-family: Arial, sans-serif; }
+
+form { margin: 25px; }
+
+#alias { width: 100%; }
+
+input {
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+p { margin-bottom: 5px; }
+
+#title-area {
+    display: none;
+    align-items: center;
+    background-color: #eee;
+    margin: 25px 10px 25px 25px;
+    border-radius: 7px;
+    padding: 25px;
+}
+
+i {
+    margin-left: 15px;
+    font-size: 16pt;
+}
