@@ -34,6 +34,7 @@ p { margin-bottom: 5px; }
 #title-container, 
 #domain-container,
 #subdomain-container,
+#query-container,
 #filename-container,
 #filetype-container,
 #alias-container,
@@ -58,4 +59,16 @@ i {
     margin-left: 15px;
     font-size: 16pt;
     text-align: right;
+}
+
+.table {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 500px;
+}
+
+.table-data {
+    border: 1px solid rgb(150, 150, 150);
+    padding: 10px;
+    min-width: 40%;
 }

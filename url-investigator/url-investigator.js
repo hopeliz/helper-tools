@@ -1,25 +1,29 @@
 function investigateURL() {
 
-    let parsedURL = document.forms["url-form"].url.value.split("/");
+    var parsedURL = document.forms["url-form"].url.value.split("/");
     
     console.log(parsedURL);
     
     // Get pieces
-    let domain = "";
-    let subdomain = "";
-    let alias = "";
-    let fileType = "";
-    let fileName = "";
-    let title = "";
+    var domain = "";
+    var subdomain = "";
+    var alias = "";
+    var fileType = "";
+    var fileName = "";
+    var title = "";
     
     const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     
-    let dates = [];
-    let year = "";
-    let month = "";
-    let day = "";
-    let lastPiece = "";
-    let lastPieceParsed = "";
+    var dates = [];
+    var year = "";
+    var month = "";
+    var day = "";
+    var lastPiece = "";
+    var lastPieceParsed = "";
+    var queryString = "";
+    var urlParamsObj = "";
+    var urlParams = [];
+    var urlParamValues = [];
 
     // Check if URL starts with ww...
     if (parsedURL[2].split(".")[0][0] != "w" && parsedURL[2].split(".")[0][1] != "w" && parsedURL[2].length > 3) {
@@ -35,14 +39,37 @@ function investigateURL() {
         parsedURL.pop();
     }
     
-    // Check for links to files
-    
     lastPiece = parsedURL[parsedURL.length - 1];
     
     console.log(lastPiece);
+
+    // Check for query string
+    if (document.forms["url-form"].url.value.includes("?")) {
+        queryString = lastPiece.split("?")[lastPiece.split("?").length - 1];
+
+        let queryStringParsed = queryString.split("&");
+
+        console.log(queryString);
+
+        for (let x in queryStringParsed) {
+            if (queryStringParsed[x].includes("=")) {
+                urlParams.push(queryStringParsed[x].split("=")[0]);
+                urlParamValues.push(queryStringParsed[x].split("=")[1]);
+            }
+        }
+
+        console.log(urlParams);
+        console.log(urlParamValues);
+    }
     
+    // Check for links to files
     if (!lastPiece.includes(".")) {
-        alias = lastPiece;
+        if (queryString == "") {
+            alias = lastPiece;
+        }
+        else {
+            alias = lastPiece.split("?")[0];
+        }
     }
     else {
         lastPieceParsed = lastPiece.split(".");
@@ -91,7 +118,6 @@ function investigateURL() {
                 else {
                     dates.push(monthNames[month] + " " + year);
                 }
-//                dates.push(new Date(year, (month - 1)));
             }
             else {
                 dates.push(year);
@@ -128,7 +154,6 @@ function investigateURL() {
                 else {
                     dates.push(monthNames[month] + " " + year);
                 }
-//                dates.push(new Date(year, (month - 1)));
             }
             else {
                 dates.push(year);
@@ -151,6 +176,25 @@ function investigateURL() {
     if (subdomain != "www") {
         document.getElementById("subdomain-container").style.display = "block";
         document.getElementById("subdomain-text").innerHTML = subdomain;
+    }
+
+    if (urlParams.length > 0) {
+        document.getElementById("query-container").style.display = "block";
+
+        let queryText = "";
+
+        queryText = `<div class="table">
+                <div class="table-data"><strong>Parameter</strong></div>
+                <div class="table-data"><strong>Value</strong></div>`;
+
+        for (let x in urlParams) {
+            queryText += `<div class="table-data">${urlParams[x]}</div>
+            <div class="table-data">${urlParamValues[x]}</div>`;
+        }
+
+        queryText += "</div>";
+
+        document.getElementById("query-text").innerHTML = queryText;
     }
     
     if (fileName != "") {
