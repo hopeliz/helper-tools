@@ -9,17 +9,29 @@
     <script src="filetype-list.js"></script>
 </head>
 <body>
-    <form id="url-form">
+    <form id="url-form" action="#">
         <p><label for="url">URL: </label></p>
         <input type="text" id="url" name="url"><br>
-        <input type="button" value="Investigate" onclick="investigateURL()">
+        <input type="submit" value="Investigate" onclick="investigateURL()" onsubmit="handle(e)">
     </form>
+
+    <script>
+        function handle(e){
+            e.preventDefault();
+            
+            investigateURL();
+        }
+    </script>
     
     <div id="full-domain-container">
         <h2>Full Domain:</h2>
         <div id="full-domain-results" class="results">
             <div id="full-domain-text" class="results-text"></div>
-            <i class="fa-regular fa-copy" onclick="copyToClipboard('full-domain-text')"></i>
+            <div class="tooltip">
+                <i class="fa-regular fa-copy" onclick="copyToClipboard('full-domain-text', 'full-domain-copy-tooltip')" onmouseout="outCopy('full-domain-copy-tooltip')">
+                    <span class="tooltiptext" id="full-domain-copy-tooltip">Copy</span>
+                </i>
+            </div>
         </div>
     </div>
     
@@ -27,7 +39,12 @@
         <h2>Domain:</h2>
         <div id="domain-results" class="results">
             <div id="domain-text" class="results-text"></div>
-            <i class="fa-regular fa-copy" onclick="copyToClipboard('domain-text')"></i>
+            <!-- <i class="fa-regular fa-copy" onclick="copyToClipboard('domain-text')"></i> -->
+            <div class="tooltip">
+                <i class="fa-regular fa-copy" onclick="copyToClipboard('domain-text', 'domain-copy-tooltip')" onmouseout="outCopy('domain-copy-tooltip')">
+                    <span class="tooltiptext" id="domain-copy-tooltip">Copy</span>
+                </i>
+            </div>
         </div>
     </div>
     
@@ -35,7 +52,12 @@
         <h2>Subdomain:</h2>
         <div id="subdomain-results" class="results">
             <div id="subdomain-text" class="results-text"></div>
-            <i class="fa-regular fa-copy" onclick="copyToClipboard('subdomain-text')"></i>
+            <!-- <i class="fa-regular fa-copy" onclick="copyToClipboard('subdomain-text')"></i> -->
+            <div class="tooltip">
+                <i class="fa-regular fa-copy" onclick="copyToClipboard('subdomain-text', 'subdomain-copy-tooltip')" onmouseout="outCopy('subdomain-copy-tooltip')">
+                    <span class="tooltiptext" id="subdomain-copy-tooltip">Copy</span>
+                </i>
+            </div>
         </div>
     </div>
 
@@ -50,7 +72,12 @@
         <h2>File Name:</h2>
         <div id="filename-results" class="results">
             <div id="filename-text" class="results-text"></div>
-            <i class="fa-regular fa-copy" onclick="copyToClipboard('filename-text')"></i>
+            <!-- <i class="fa-regular fa-copy" onclick="copyToClipboard('filename-text')"></i> -->
+            <div class="tooltip">
+                <i class="fa-regular fa-copy" onclick="copyToClipboard('filename-text', 'filename-copy-tooltip')" onmouseout="outCopy('filename-copy-tooltip')">
+                    <span class="tooltiptext" id="filename-copy-tooltip">Copy</span>
+                </i>
+            </div>
         </div>
     </div>
     
@@ -58,7 +85,12 @@
         <h2>File Type:</h2>
         <div id="filetype-results" class="results">
             <div id="filetype-text" class="results-text"></div>
-            <i class="fa-regular fa-copy" onclick="copyToClipboard('filetype-text')"></i>
+            <!-- <i class="fa-regular fa-copy" onclick="copyToClipboard('filetype-text')"></i> -->
+            <div class="tooltip">
+                <i class="fa-regular fa-copy" onclick="copyToClipboard('filetype-text', 'filetype-copy-tooltip')" onmouseout="outCopy('filetype-copy-tooltip')">
+                    <span class="tooltiptext" id="filetype-copy-tooltip">Copy</span>
+                </i>
+            </div>
         </div>
     </div>
     
@@ -66,7 +98,12 @@
         <h2>Alias/Slug:</h2>
         <div id="alias-results" class="results">
             <div id="alias-text" class="results-text"></div>
-            <i class="fa-regular fa-copy" onclick="copyToClipboard('alias-text')"></i>
+            <!-- <i class="fa-regular fa-copy" onclick="copyToClipboard('alias-text')"></i> -->
+            <div class="tooltip">
+                <i class="fa-regular fa-copy" onclick="copyToClipboard('alias-text', 'alias-copy-tooltip')" onmouseout="outCopy('alias-copy-tooltip')">
+                    <span class="tooltiptext" id="alias-copy-tooltip">Copy</span>
+                </i>
+            </div>
         </div>
     </div>
     
@@ -74,7 +111,12 @@
         <h2>Possible Dates Found:</h2>
         <div id="dates-results" class="results">
             <div id="dates-text" class="results-text"></div>
-            <i class="fa-regular fa-copy" onclick="copyToClipboard('dates-text')"></i>
+            <!-- <i class="fa-regular fa-copy" onclick="copyToClipboard('dates-text')"></i> -->
+            <div class="tooltip">
+                <i class="fa-regular fa-copy" onclick="copyToClipboard('dates-text', 'dates-copy-tooltip')" onmouseout="outCopy('dates-copy-tooltip')">
+                    <span class="tooltiptext" id="dates-copy-tooltip">Copy</span>
+                </i>
+            </div>
         </div>
     </div>
     
@@ -82,7 +124,12 @@
         <h2>Possible Article title:</h2>
         <div id="title-results" class="results">
             <div id="title-text" class="results-text"></div>
-            <i class="fa-regular fa-copy" onclick="copyToClipboard('title-text')"></i>
+            <!-- <i class="fa-regular fa-copy" onclick="copyToClipboard('title-text')"></i> -->
+            <div class="tooltip">
+                <i class="fa-regular fa-copy" onclick="copyToClipboard('title-text', 'title-copy-tooltip')" onmouseout="outCopy('title-copy-tooltip')">
+                    <span class="tooltiptext" id="title-copy-tooltip">Copy</span>
+                </i>
+            </div>
         </div>
     </div>
     

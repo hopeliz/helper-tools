@@ -21,17 +21,23 @@ function investigateURL() {
     fullDomain = parsedURL[2];
     console.log(`Full domain: ${fullDomain}`);
 
-    // Check if URL starts with ww...
-    if (fullDomain.split(".")[0][0] == "w" && fullDomain[2].split(".")[0][1] == "w" && fullDomain.length < 3) {
-        domain = `${fullDomain.split(".")[0]}.${fullDomain.split(".")[1]}`;
-        console.log("Domain: " + domain);
+    // Check for subdomain
+    if (fullDomain.split(".").length > 2) {
+        // Check if URL starts with ww...
+        if (fullDomain.split(".")[0][0] == "w" && fullDomain[2].split(".")[0][1] == "w" && fullDomain.length < 3) {
+            domain = `${fullDomain.split(".")[1]}.${fullDomain.split(".")[2]}`;
+            console.log("Domain: " + domain);
+        }
+        else {
+            domain = `${fullDomain.split(".")[1]}.${fullDomain.split(".")[2]}`;
+            console.log("Domain: " + domain);
+            
+            subdomain = fullDomain.split(".")[0];
+            console.log("Subdomain: " + subdomain);
+        }
     }
     else {
-        domain = `${fullDomain.split(".")[1]}.${fullDomain.split(".")[2]}`;
-        console.log("Domain: " + domain);
-        
-        subdomain = fullDomain.split(".")[0];
-        console.log("Subdomain: " + subdomain);
+        domain = `${fullDomain.split(".")[0]}.${fullDomain.split(".")[1]}`;
     }
 
     // Removes empty last indicies
@@ -192,7 +198,7 @@ function investigateURL() {
     document.getElementById("full-domain-text").innerHTML = fullDomain;
     document.getElementById("domain-text").innerHTML = domain;
     
-    if (subdomain != "www") {
+    if (subdomain != "www" && subdomain != "") {
         document.getElementById("subdomain-container").style.display = "block";
         document.getElementById("subdomain-text").innerHTML = subdomain;
     }
@@ -384,14 +390,21 @@ function checkForSymbols(textToCheck, includeChars) {
     return resultText;
 }
 
-function copyToClipboard(textToCopy) {
+function copyToClipboard(textToCopy, tooltipID) {
     let copiedText = document.getElementById(textToCopy).innerHTML;
 
     navigator.clipboard.writeText(copiedText);
 
-    alert("The text has been copied.");
+    document.getElementById(tooltipID).innerHTML = "Copied";
+
+    //alert("The text has been copied.");
 
     return copiedText;
+}
+
+
+function outCopy(tooltipID) {
+    document.getElementById(tooltipID).innerHTML = "Copy";
 }
 
 function resetPage() {
