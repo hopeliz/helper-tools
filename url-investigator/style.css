@@ -31,8 +31,7 @@ p { margin-bottom: 5px; }
     padding: 25px;
 }
 
-#title-container, 
-#domain-container,
+#title-container,
 #subdomain-container,
 #query-container,
 #filename-container,
@@ -42,7 +41,8 @@ p { margin-bottom: 5px; }
     display: none;
 }
 
-#title-results, 
+#title-results,
+#full-domain-results,
 #domain-results,
 #subdomain-results,
 #filename-results,

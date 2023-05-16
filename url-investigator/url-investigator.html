@@ -15,6 +15,14 @@
         <input type="button" value="Investigate" onclick="investigateURL()">
     </form>
     
+    <div id="full-domain-container">
+        <h2>Full Domain:</h2>
+        <div id="full-domain-results" class="results">
+            <div id="full-domain-text" class="results-text"></div>
+            <i class="fa-regular fa-copy" onclick="copyToClipboard('full-domain-text')"></i>
+        </div>
+    </div>
+    
     <div id="domain-container">
         <h2>Domain:</h2>
         <div id="domain-results" class="results">
@@ -34,9 +42,7 @@
     <div id="query-container">
         <h2>Query Parameters:</h2>
         <div id="query-results" class="results">
-            <div id="query-text" class="results-text">
-                
-            </div>
+            <div id="query-text" class="results-text"></div>
         </div>
     </div>
     
@@ -72,10 +78,12 @@
         </div>
     </div>
     
-    <h2>Try to Search:</h2>
-    <div id="title-results" class="results">
-        <div id="title-text" class="results-text"></div>
-        <i class="fa-regular fa-copy" onclick="copyToClipboard('title-text')"></i>
+    <div id="title-container">
+        <h2>Possible Article title:</h2>
+        <div id="title-results" class="results">
+            <div id="title-text" class="results-text"></div>
+            <i class="fa-regular fa-copy" onclick="copyToClipboard('title-text')"></i>
+        </div>
     </div>
     
 </body>

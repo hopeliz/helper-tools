@@ -1,55 +1,54 @@
-function investigateURL() {
+const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-    var parsedURL = document.forms["url-form"].url.value.split("/");
+var parsedURL, fullDomain, domain, subdomain, aliasPart, alias, fileType, fileName, title;
+var dates = [];
+var year, month, day;
+
+var lastPiece, lastPieceParsed, queryString, urlParamsObj;
+
+var urlParams = [];
+var urlParamValues = [];
+
+function investigateURL() {
     
+    resetPage();
+
+    parsedURL = document.forms["url-form"].url.value.split("/");
+    
+    console.log("Parsed URL:");
     console.log(parsedURL);
     
-    // Get pieces
-    var domain = "";
-    var subdomain = "";
-    var alias = "";
-    var fileType = "";
-    var fileName = "";
-    var title = "";
-    
-    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    
-    var dates = [];
-    var year = "";
-    var month = "";
-    var day = "";
-    var lastPiece = "";
-    var lastPieceParsed = "";
-    var queryString = "";
-    var urlParamsObj = "";
-    var urlParams = [];
-    var urlParamValues = [];
+    fullDomain = parsedURL[2];
+    console.log(`Full domain: ${fullDomain}`);
 
     // Check if URL starts with ww...
-    if (parsedURL[2].split(".")[0][0] != "w" && parsedURL[2].split(".")[0][1] != "w" && parsedURL[2].length > 3) {
-        domain = `${parsedURL[2].split(".")[0]}.${parsedURL[2].split(".")[1]}`;
+    if (fullDomain.split(".")[0][0] == "w" && fullDomain[2].split(".")[0][1] == "w" && fullDomain.length < 3) {
+        domain = `${fullDomain.split(".")[0]}.${fullDomain.split(".")[1]}`;
+        console.log("Domain: " + domain);
     }
     else {
-        domain = `${parsedURL[2].split(".")[1]}.${parsedURL[2].split(".")[2]}`;
-        subdomain = parsedURL[2].split(".")[0];
+        domain = `${fullDomain.split(".")[1]}.${fullDomain.split(".")[2]}`;
+        console.log("Domain: " + domain);
+        
+        subdomain = fullDomain.split(".")[0];
+        console.log("Subdomain: " + subdomain);
     }
 
     // Removes empty last indicies
     while (parsedURL[parsedURL.length - 1] == "") {
         parsedURL.pop();
+        console.log("Removed empty last index");
     }
     
     lastPiece = parsedURL[parsedURL.length - 1];
-    
-    console.log(lastPiece);
+    console.log("Last piece: " + lastPiece);
 
     // Check for query string
     if (document.forms["url-form"].url.value.includes("?")) {
         queryString = lastPiece.split("?")[lastPiece.split("?").length - 1];
+        console.log(`Query string: ${queryString}`);
 
         let queryStringParsed = queryString.split("&");
-
-        console.log(queryString);
 
         for (let x in queryStringParsed) {
             if (queryStringParsed[x].includes("=")) {
@@ -58,17 +57,30 @@ function investigateURL() {
             }
         }
 
+        console.log("URL Parameters:");
         console.log(urlParams);
+        console.log("URL Parameter Values:");
         console.log(urlParamValues);
     }
     
     // Check for links to files
     if (!lastPiece.includes(".")) {
+        
+        // Check for alias
+        if (lastPiece.includes("-")) {
+            aliasPart = lastPiece;
+        }
+        else if (parsedURL[parsedURL.length - 2].includes("-")) {
+            aliasPart = parsedURL[parsedURL.length - 2];
+        }
+        
         if (queryString == "") {
-            alias = lastPiece;
+            alias = aliasPart;
+            console.log(`Alias/Slug: ${alias}`);
         }
         else {
-            alias = lastPiece.split("?")[0];
+            alias = aliasPart.split("?")[0];
+            console.log(`Alias/Slug: ${alias}`);
         }
     }
     else {
@@ -79,6 +91,8 @@ function investigateURL() {
             fileType = lastPieceParsed[lastPieceParsed.length - 1];
             fileName += lastPiece;
         }
+        
+        console.log(`File Name: ${fileName}`);
     }
         
     title = alias.replace(/-/g," ");
@@ -89,6 +103,8 @@ function investigateURL() {
     for (let i = 0; i < 5; i ++) {
         title = checkForSymbols(title, false);
     }
+    
+    console.log(`Possible article title: ${title}`);
     
     // Look for a date in URL structure
     let URLDates = lookForDate(parsedURL);
@@ -166,11 +182,14 @@ function investigateURL() {
         }
     }
     
+    console.log("Dates found in URL:");
     console.log(URLDates);
     console.log(LastPieceDates);
     console.log(dates);
 
     // Print results
+    
+    document.getElementById("full-domain-text").innerHTML = fullDomain;
     document.getElementById("domain-text").innerHTML = domain;
     
     if (subdomain != "www") {
@@ -212,7 +231,10 @@ function investigateURL() {
         document.getElementById("alias-text").innerHTML = alias;
     }
     
-    document.getElementById("title-text").innerHTML = title;
+    if (title != "") {
+        document.getElementById("title-container").style.display = "block";
+        document.getElementById("title-text").innerHTML = title;
+    }
     
     if (dates.length > 0) {
         document.getElementById("dates-container").style.display = "block";
@@ -229,9 +251,6 @@ function investigateURL() {
 }
 
 function lookForDate(arrayToCheck) {
-    
-    console.log(arrayToCheck);
-    
     let years = [];
     let months = [];
     let days = [];
@@ -373,4 +392,38 @@ function copyToClipboard(textToCopy) {
     alert("The text has been copied.");
 
     return copiedText;
+}
+
+function resetPage() {
+    parsedURL = "";
+    fullDomain = "";
+    domain = "";
+    subdomain = "";
+    aliasPart = "";
+    alias = "";
+    fileType = "";
+    fileName = "";
+    title = "";
+    dates = [];
+    year = "";
+    month = "";
+    day = "";
+    lastPiece = "";
+    lastPieceParsed = "";
+    queryString = "";
+    urlParamsObj = "";
+    urlParams = [];
+    urlParamValues = [];
+    
+    document.getElementById("full-domain-text").innerHTML = "";
+    document.getElementById("domain-text").innerHTML = "";
+    document.getElementById("subdomain-container").style.display = "none";
+    document.getElementById("query-container").style.display = "none";
+    queryText = "";
+    document.getElementById("filename-container").style.display = "none";
+    document.getElementById("filetype-container").style.display = "none";    
+    document.getElementById("alias-container").style.display = "none";   
+    document.getElementById("title-container").style.display = "none";
+    document.getElementById("dates-container").style.display = "none";
+    
 }

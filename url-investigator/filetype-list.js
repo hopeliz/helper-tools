@@ -161,7 +161,7 @@ const fileTypes = [
     },
 ];
     
-console.log(fileTypes);
+//console.log(fileTypes);
     
 function getFileTypeInfo(ext) {
     ext = ext.toLowerCase();
