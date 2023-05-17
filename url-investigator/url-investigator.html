@@ -9,19 +9,10 @@
     <script src="filetype-list.js"></script>
 </head>
 <body>
-    <form id="url-form" action="#">
+    <form id="url-form">
         <p><label for="url">URL: </label></p>
-        <input type="text" id="url" name="url"><br>
-        <input type="submit" value="Investigate" onclick="investigateURL()" onsubmit="handle(e)">
+        <input type="text" id="url" name="url" onchange="investigateURL()">
     </form>
-
-    <script>
-        function handle(e){
-            e.preventDefault();
-            
-            investigateURL();
-        }
-    </script>
     
     <div id="full-domain-container">
         <h2>Full Domain:</h2>
