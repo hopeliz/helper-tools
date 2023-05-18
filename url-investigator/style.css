@@ -77,6 +77,29 @@ i {
 
 .parameter { width: fit-content; }
 
+/* OPTIONS */
+
+#dorking-options {
+    padding: 25px;
+}
+
+#gd-menu-status {
+    padding-right: 5px;
+}
+
+#options-list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    list-style: none;
+    padding: 10px 0;
+}
+
+#options-list li {
+    margin: 5px 0;
+    height: 30px;
+}
+
 /* TOOLTIP */
 
 .tooltip {
