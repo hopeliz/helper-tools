@@ -31,24 +31,26 @@ p { margin-bottom: 5px; }
     padding: 25px;
 }
 
-#title-container,
 #subdomain-container,
 #query-container,
 #filename-container,
 #filetype-container,
 #alias-container,
-#dates-container {
+#dates-container,
+#title-container,
+#search-container {
     display: none;
 }
 
-#title-results,
 #full-domain-results,
 #domain-results,
 #subdomain-results,
 #filename-results,
 #filetype-results,
 #alias-results,
-#dates-results {
+#dates-results,
+#title-results,
+#search-results {
     display: flex;
     align-items: center;
 }

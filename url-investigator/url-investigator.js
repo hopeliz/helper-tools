@@ -253,6 +253,11 @@ function investigateURL() {
         document.getElementById("title-container").style.display = "block";
         document.getElementById("title-text").innerHTML = title;
     }
+
+    if (title != "") {
+        document.getElementById("search-container").style.display = "block";
+        document.getElementById("search-text").innerHTML = title;
+    }
     
     if (dates.length > 0) {
         document.getElementById("dates-container").style.display = "block";

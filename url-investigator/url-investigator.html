@@ -12,7 +12,7 @@
 <body>
     <form id="url-form">
         <p><label for="url">URL: </label></p>
-        <input type="text" id="url" name="url" onchange="investigateURL()">
+        <input type="text" id="url" name="url" onchange="investigateURL()" onkeyup="investigateURL()">
     </form>
     
     <div id="full-domain-container">
@@ -31,7 +31,6 @@
         <h2>Domain:</h2>
         <div id="domain-results" class="results">
             <div id="domain-text" class="results-text"></div>
-            <!-- <i class="fa-regular fa-copy" onclick="copyToClipboard('domain-text')"></i> -->
             <div class="tooltip">
                 <i class="fa-regular fa-copy" onclick="copyToClipboard('domain-text', 'domain-copy-tooltip')" onmouseout="outCopy('domain-copy-tooltip')">
                     <span class="tooltiptext" id="domain-copy-tooltip">Copy</span>
@@ -43,9 +42,7 @@
     <div id="subdomain-container">
         <h2>Subdomain:</h2>
         <div id="subdomain-results" class="results">
-
             <div id="subdomain-text" class="results-text"></div>
-
             <div class="tooltip">
                 <i class="fa-regular fa-copy" onclick="copyToClipboard('subdomain-text', 'subdomain-copy-tooltip')" onmouseout="outCopy('subdomain-copy-tooltip')">
                     <span class="tooltiptext" id="subdomain-copy-tooltip">Copy</span>
@@ -57,7 +54,6 @@
 
     <div id="query-container">
         <h2>Query Parameters:</h2>
-
         <div id="query-results" class="results">
             <div id="query-text" class="results-text"></div>
         </div>
@@ -67,15 +63,13 @@
     <div id="filename-container">
         <h2>File Name:</h2>
         <div id="filename-results" class="results">
-            
             <div id="filename-text" class="results-text"></div>
-            
             <div class="tooltip">
                 <i class="fa-regular fa-copy" onclick="copyToClipboard('filename-text', 'filename-copy-tooltip')" onmouseout="outCopy('filename-copy-tooltip')">
                     <span class="tooltiptext" id="filename-copy-tooltip">Copy</span>
                 </i>
             </div>
-            
+
         </div>
     </div>
     
@@ -83,7 +77,6 @@
         <h2>File Type:</h2>
         <div id="filetype-results" class="results">
             <div id="filetype-text" class="results-text"></div>
-            <!-- <i class="fa-regular fa-copy" onclick="copyToClipboard('filetype-text')"></i> -->
             <div class="tooltip">
                 <i class="fa-regular fa-copy" onclick="copyToClipboard('filetype-text', 'filetype-copy-tooltip')" onmouseout="outCopy('filetype-copy-tooltip')">
                     <span class="tooltiptext" id="filetype-copy-tooltip">Copy</span>
@@ -96,7 +89,6 @@
         <h2>Alias/Slug:</h2>
         <div id="alias-results" class="results">
             <div id="alias-text" class="results-text"></div>
-            <!-- <i class="fa-regular fa-copy" onclick="copyToClipboard('alias-text')"></i> -->
             <div class="tooltip">
                 <i class="fa-regular fa-copy" onclick="copyToClipboard('alias-text', 'alias-copy-tooltip')" onmouseout="outCopy('alias-copy-tooltip')">
                     <span class="tooltiptext" id="alias-copy-tooltip">Copy</span>
@@ -109,7 +101,6 @@
         <h2>Possible Dates Found:</h2>
         <div id="dates-results" class="results">
             <div id="dates-text" class="results-text"></div>
-            <!-- <i class="fa-regular fa-copy" onclick="copyToClipboard('dates-text')"></i> -->
             <div class="tooltip">
                 <i class="fa-regular fa-copy" onclick="copyToClipboard('dates-text', 'dates-copy-tooltip')" onmouseout="outCopy('dates-copy-tooltip')">
                     <span class="tooltiptext" id="dates-copy-tooltip">Copy</span>
@@ -122,10 +113,21 @@
         <h2>Possible Article title:</h2>
         <div id="title-results" class="results">
             <div id="title-text" class="results-text"></div>
-            <!-- <i class="fa-regular fa-copy" onclick="copyToClipboard('title-text')"></i> -->
             <div class="tooltip">
                 <i class="fa-regular fa-copy" onclick="copyToClipboard('title-text', 'title-copy-tooltip')" onmouseout="outCopy('title-copy-tooltip')">
                     <span class="tooltiptext" id="title-copy-tooltip">Copy</span>
+                </i>
+            </div>
+        </div>
+    </div>
+
+    <div id="search-container">
+        <h2>Search Query:</h2>
+        <div id="search-results" class="results">
+            <div id="search-text" class="results-text"></div>
+            <div class="tooltip">
+                <i class="fa-regular fa-copy" onclick="copyToClipboard('search-text', 'search-copy-tooltip')" onmouseout="outCopy('search-copy-tooltip')">
+                    <span class="tooltiptext" id="search-copy-tooltip">Copy</span>
                 </i>
             </div>
         </div>
