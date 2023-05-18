@@ -92,6 +92,10 @@ const fileTypes = [
         type: "Adobe Acrobat document"
     },
     {
+        extension: "php",
+        type: "PHP document"
+    },
+    {
         extension: "png",
         type: "Portable Network Graphics (PNG) image"
     },

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="url-investigator.js"></script>
     <script src="filetype-list.js"></script>
+    <script src="data-processing.js"></script>
 </head>
 <body>
     <form id="url-form">
@@ -42,33 +43,39 @@
     <div id="subdomain-container">
         <h2>Subdomain:</h2>
         <div id="subdomain-results" class="results">
+
             <div id="subdomain-text" class="results-text"></div>
-            <!-- <i class="fa-regular fa-copy" onclick="copyToClipboard('subdomain-text')"></i> -->
+
             <div class="tooltip">
                 <i class="fa-regular fa-copy" onclick="copyToClipboard('subdomain-text', 'subdomain-copy-tooltip')" onmouseout="outCopy('subdomain-copy-tooltip')">
                     <span class="tooltiptext" id="subdomain-copy-tooltip">Copy</span>
                 </i>
             </div>
+
         </div>
     </div>
 
     <div id="query-container">
         <h2>Query Parameters:</h2>
+
         <div id="query-results" class="results">
             <div id="query-text" class="results-text"></div>
         </div>
+
     </div>
     
     <div id="filename-container">
         <h2>File Name:</h2>
         <div id="filename-results" class="results">
+            
             <div id="filename-text" class="results-text"></div>
-            <!-- <i class="fa-regular fa-copy" onclick="copyToClipboard('filename-text')"></i> -->
+            
             <div class="tooltip">
                 <i class="fa-regular fa-copy" onclick="copyToClipboard('filename-text', 'filename-copy-tooltip')" onmouseout="outCopy('filename-copy-tooltip')">
                     <span class="tooltiptext" id="filename-copy-tooltip">Copy</span>
                 </i>
             </div>
+            
         </div>
     </div>
     
