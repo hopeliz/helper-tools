@@ -313,7 +313,7 @@ function investigateURL() {
         for (let i = 0; i < dates.length; i++) {
             if (dates[i] instanceof Date) {
                 if (dates[i].getDate())
-                document.getElementById("dates-text").innerHTML += `<p>${monthNames[dates[i].getMonth()]} ${dates[i].getDate()}, ${dates[i].getFullYear()}</p>`;
+                document.getElementById("dates-text").innerHTML += `<p>${monthNames[dates[i].getMonth() + 1]} ${dates[i].getDate()}, ${dates[i].getFullYear()}</p>`;
             }
             else {
                 document.getElementById("dates-text").innerHTML += `<p>${dates[i]}</p>`;
