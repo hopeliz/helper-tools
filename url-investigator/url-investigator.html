@@ -138,10 +138,10 @@
         <div id="options-list-container">
             <ul id="options-list">
                 <li>
-                    <input type="checkbox" name="exact" id="gd-exact"> Exact Phrase
+                    <input type="checkbox" name="exact" id="gd-exact" onchange="buildSearchQuery('gd-exact')"> Exact Phrase
                 </li>
                 <li>
-                    <input type="checkbox" name="inurl" id="gd-inurl"> Search in specific URL (one keyword):
+                    <input type="checkbox" name="inurl" id="gd-inurl" onchange="buildSearchQuery('gd-inurl')"> Search in specific URL (one keyword):
                     <input type="text" name="inurlurl" id="gd-inurlurl" value="">
                 </li>
                 <li>

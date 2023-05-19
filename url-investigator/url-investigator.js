@@ -9,6 +9,8 @@ var lastPiece, lastPieceParsed, queryString, urlParamsObj;
 var urlParams = [];
 var urlParamValues = [];
 
+var searchQuery = [];
+
 function investigateURL() {
     
     resetPage();
@@ -209,6 +211,7 @@ function investigateURL() {
     
     document.getElementById("full-domain-text").innerHTML = fullDomain;
     document.getElementById("domain-text").innerHTML = domain;
+    document.getElementById("gd-inurlurl").value = domain;
     
     if (subdomain != "www" && subdomain != "") {
         document.getElementById("subdomain-container").style.display = "block";
@@ -257,6 +260,8 @@ function investigateURL() {
     if (title != "") {
         document.getElementById("search-container").style.display = "block";
         document.getElementById("search-text").innerHTML = title;
+
+        searchQuery.push(title);
     }
     
     if (dates.length > 0) {
@@ -328,9 +333,38 @@ function copyToClipboard(textToCopy, tooltipID) {
     return copiedText;
 }
 
-
 function outCopy(tooltipID) {
     document.getElementById(tooltipID).innerHTML = "Copy";
+}
+
+function buildSearchQuery(id) {
+
+    if (id == "gd-exact") {
+        if (document.getElementById(id).checked) {
+            searchQuery[0] = `"${searchQuery[0]}"`;
+        }
+        else {
+            searchQuery[0] = title;
+        }
+    }
+
+    document.getElementById("search-text").innerHTML = searchQuery[0];
+
+    if (id == "gd-inurl") {
+        if (document.getElementById(id).checked) {
+            searchQuery[1] = " inurl:" + document.getElementById(id + "url").value;
+        }
+        else {
+            searchQuery[1] = "";
+        }
+    }
+
+    if (searchQuery[1] != undefined) {
+        document.getElementById("search-text").innerHTML += searchQuery[1];
+    }
+    else {
+        document.getElementById("search-text").innerHTML += "";
+    }
 }
 
 function resetPage() {
@@ -353,6 +387,7 @@ function resetPage() {
     urlParamsObj = "";
     urlParams = [];
     urlParamValues = [];
+    searchQuery = [];
     
     document.getElementById("full-domain-text").innerHTML = "";
     document.getElementById("domain-text").innerHTML = "";
@@ -364,5 +399,6 @@ function resetPage() {
     document.getElementById("alias-container").style.display = "none";   
     document.getElementById("title-container").style.display = "none";
     document.getElementById("dates-container").style.display = "none";
-    
+    document.getElementById("search-text").innerHTML = "";
+    document.getElementById("search-container").style.display = "none";
 }
