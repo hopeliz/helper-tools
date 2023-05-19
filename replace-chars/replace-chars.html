@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Remove Characters</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="replace-chars.js"></script>
+</head>
+<body>
+    <div id="container">
+        <form id="text-form">
+            <div class="form-field">
+                <label for="startText">Starting text:</label>
+                <input id="startText" name="startText">
+            </div>
+            
+            <div class="form-field">
+                <label for="char1">Character to replace/remove: </label>
+                <input id="char1" name="char1">
+            </div>
+            
+            <div class="form-field">
+                <label for="char2">Replace with character: </label>
+                <input id="char2" name="char2">
+            </div>
+            
+            <div id="buttons">
+                <input type="button" value="Replace" onclick="replaceChars(false)"> 
+                <input type="button" value="Remove" onclick="replaceChars(true)">
+            </div>
+        </form>
+        
+        <div id="result">
+            <div id="result-text"></div>
+        </div>
+    </div>
+</body>
+</html>
