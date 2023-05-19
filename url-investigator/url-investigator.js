@@ -288,7 +288,7 @@ function investigateURL() {
     
     if (fileType != "") {
         document.getElementById("filetype-container").style.display = "block";
-        document.getElementById("filetype-text").innerHTML = fileType + " - " + getFileTypeInfo(fileType);
+        document.getElementById("filetype-text").innerHTML = fileType + getFileTypeInfo(fileType);
     }
     
     if (alias != "") {

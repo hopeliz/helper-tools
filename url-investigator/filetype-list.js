@@ -162,7 +162,7 @@ const fileTypes = [
     {
         extension: "zip",
         type: "Archive / compressed file"
-    },
+    }
 ];
     
 //console.log(fileTypes);
@@ -171,7 +171,10 @@ function getFileTypeInfo(ext) {
     ext = ext.toLowerCase();
     for (let x in fileTypes) {
         if (fileTypes[x].extension == ext) {
-            return fileTypes[x].type;
+            return " - " + fileTypes[x].type;
+        }
+        else {
+            return "";
         }
     }
 }
