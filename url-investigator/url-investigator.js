@@ -212,6 +212,7 @@ function investigateURL() {
     document.getElementById("full-domain-text").innerHTML = fullDomain;
     document.getElementById("domain-text").innerHTML = domain;
     document.getElementById("gd-inurlurl").value = domain;
+    document.getElementById("gd-allinurlurl").value = domain;
     
     if (subdomain != "www" && subdomain != "") {
         document.getElementById("subdomain-container").style.display = "block";
@@ -339,32 +340,37 @@ function outCopy(tooltipID) {
 
 function buildSearchQuery(id) {
 
+    let searchText = document.getElementById("search-text");
+
     if (id == "gd-exact") {
-        if (document.getElementById(id).checked) {
-            searchQuery[0] = `"${searchQuery[0]}"`;
-        }
-        else {
-            searchQuery[0] = title;
-        }
+        if (document.getElementById(id).checked) { searchQuery[0] = `"${searchQuery[0]}"`; }
+        else { searchQuery[0] = title; }
     }
 
-    document.getElementById("search-text").innerHTML = searchQuery[0];
+    searchText.innerHTML = searchQuery[0];
 
     if (id == "gd-inurl") {
-        if (document.getElementById(id).checked) {
-            searchQuery[1] = " inurl:" + document.getElementById(id + "url").value;
+        if (document.getElementById(id).checked) { 
+            searchQuery[1] = " inurl:" + document.getElementById(id + "url").value; 
+            document.getElementById("gd-allinurl").checked = false;
         }
-        else {
-            searchQuery[1] = "";
+        else { 
+            searchQuery[1] = ""; 
         }
     }
 
-    if (searchQuery[1] != undefined) {
-        document.getElementById("search-text").innerHTML += searchQuery[1];
+    if (id == "gd-allinurl") {
+        if (document.getElementById(id).checked) { 
+            searchQuery[1] = " allinurl:" + document.getElementById(id + "url").value; 
+            document.getElementById("gd-inurl").checked = false;
+        }
+        else { 
+            searchQuery[1] = ""; 
+        }
     }
-    else {
-        document.getElementById("search-text").innerHTML += "";
-    }
+
+    if (searchQuery[1] != undefined) { searchText.innerHTML += searchQuery[1]; }
+    else { searchText.innerHTML += ""; }
 }
 
 function resetPage() {

@@ -142,11 +142,11 @@
                 </li>
                 <li>
                     <input type="checkbox" name="inurl" id="gd-inurl" onchange="buildSearchQuery('gd-inurl')"> Search in specific URL (one keyword):
-                    <input type="text" name="inurlurl" id="gd-inurlurl" value="">
+                    <input type="text" name="inurlurl" id="gd-inurlurl" value="" onkeyup="buildSearchQuery('gd-inurl')">
                 </li>
                 <li>
-                    <input type="checkbox" name="allinurl" id="gd-allinurl"> Search in specific URL (one all keywords):
-                    <input type="text" name="allinurlurl" id="gd-allinurlurl" value="">
+                    <input type="checkbox" name="allinurl" id="gd-allinurl" onchange="buildSearchQuery('gd-allinurl')"> Search in specific URL (one all keywords):
+                    <input type="text" name="allinurlurl" id="gd-allinurlurl" value="" onkeyup="buildSearchQuery('gd-allinurl')">
                 </li>
                 <li>
                     <input type="checkbox" name="intitle" id="gd-intitle"> Search in webpage title (one keyword)
