@@ -20,18 +20,43 @@ function investigateURL() {
     console.log("Parsed URL:");
     console.log(parsedURL);
     
+// ------- DOMAIN & SUBDOMAIN ---------- //
+    
     fullDomain = parsedURL[2];
     console.log(`Full domain: ${fullDomain}`);
-
+    
     // Check for subdomain
-    if (fullDomain.split(".").length > 2) {
+    
+    let fullDomainParsed = fullDomain.split(".");
+    console.log(fullDomainParsed);
+    
+    if (fullDomainParsed.length > 2) {
         // Check if URL starts with ww...
-        if (fullDomain.split(".")[0][0] == "w" && fullDomain[2].split(".")[0][1] == "w" && fullDomain.length < 3) {
-            domain = `${fullDomain.split(".")[1]}.${fullDomain.split(".")[2]}`;
+        if (fullDomainParsed[0][0] == "w" && fullDomainParsed[0][1] == "w" && fullDomain.length < 3) {
+            
+            for (let x in fullDomainParsed) {
+                if (x > 0) {
+                    domain += fullDomainParsed[x];
+                    
+                    if (x < fullDomainParsed.length - 1) {
+                        domain += ".";
+                    }
+                }
+            }
+            //domain = `${fullDomain.split(".")[1]}.${fullDomain.split(".")[2]}`;
             console.log("Domain: " + domain);
         }
         else {
-            domain = `${fullDomain.split(".")[1]}.${fullDomain.split(".")[2]}`;
+            for (let x in fullDomainParsed) {
+                if (x > 0) {
+                    domain += fullDomainParsed[x];
+                    
+                    if (x < fullDomainParsed.length - 1) {
+                        domain += ".";
+                    }
+                }
+            }
+            //domain = `${fullDomain.split(".")[1]}.${fullDomain.split(".")[2]}`;
             console.log("Domain: " + domain);
             
             subdomain = fullDomain.split(".")[0];
@@ -41,6 +66,8 @@ function investigateURL() {
     else {
         domain = `${fullDomain.split(".")[0]}.${fullDomain.split(".")[1]}`;
     }
+    
+// ------- TRIM URL ---------- //
 
     // Removes empty last indicies
     while (parsedURL[parsedURL.length - 1] == "") {
@@ -50,6 +77,8 @@ function investigateURL() {
     
     lastPiece = parsedURL[parsedURL.length - 1];
     console.log("Last piece: " + lastPiece);
+    
+// ------- QUERY STRING ---------- //
 
     // Check for query string
     if (document.forms["url-form"].url.value.includes("?")) {
@@ -83,6 +112,8 @@ function investigateURL() {
         console.log(urlParamValues);
     }
     
+// ------- ALIAS/SLUG ---------- //
+    
     // Check for links to files
     if (!lastPiece.includes(".")) {
         
@@ -103,6 +134,9 @@ function investigateURL() {
             console.log(`Alias/Slug: ${alias}`);
         }
     }
+    
+// ------- FILES ---------- //
+    
     else {
         lastPieceParsed = lastPiece.split(".");
         
@@ -113,9 +147,16 @@ function investigateURL() {
         }
         
         console.log(`File Name: ${fileName}`);
-    }
         
-    title = alias.replace(/-/g," ");
+        // Check for alias
+        if (lastPieceParsed[lastPieceParsed.length - 2].includes("-")) {
+            title = lastPieceParsed[lastPieceParsed.length - 2].replace(/-/g," ");
+        }
+    }
+     
+    if (title == "") {
+        title = alias.replace(/-/g," ");
+    }
 
     // Process results
     // I don't know why this needs to be ran repeatedly to work
@@ -125,6 +166,8 @@ function investigateURL() {
     }
     
     console.log(`Possible article title: ${title}`);
+    
+// ------- DATES ---------- //
     
     // Look for a date in URL structure
     let URLDates = lookForDate(parsedURL);
@@ -207,7 +250,7 @@ function investigateURL() {
     console.log(LastPieceDates);
     console.log(dates);
 
-    // Print results
+// ------- PRINT RESULTS ---------- //
     
     document.getElementById("full-domain-text").innerHTML = fullDomain;
     document.getElementById("domain-text").innerHTML = domain;
@@ -256,9 +299,7 @@ function investigateURL() {
     if (title != "") {
         document.getElementById("title-container").style.display = "block";
         document.getElementById("title-text").innerHTML = title;
-    }
-
-    if (title != "") {
+        
         document.getElementById("search-container").style.display = "block";
         document.getElementById("search-text").innerHTML = title;
 
@@ -267,6 +308,8 @@ function investigateURL() {
     
     if (dates.length > 0) {
         document.getElementById("dates-container").style.display = "block";
+        document.getElementById("dates-text").innerHTML = "";
+        
         for (let i = 0; i < dates.length; i++) {
             if (dates[i] instanceof Date) {
                 if (dates[i].getDate())
@@ -294,7 +337,7 @@ function lookForDate(arrayToCheck) {
             console.log("next piece(" + (x + 1) + "): " + arrayToCheck[Number(x)+1]);
             if (arrayToCheck[Number(x)+1] != undefined) {
                 if (arrayToCheck[Number(x)+1].length == 2 && !isNaN(arrayToCheck[Number(x)+1])) {
-                    months.push(arrayToCheck[Number(x)+1]);
+                    months.push(arrayToCheck[Number(x)+1] - 1);
 
                     if (arrayToCheck[Number(x)+2] != undefined) {
                         if (arrayToCheck[Number(x)+2].length == 2 && !isNaN(arrayToCheck[Number(x)+2])) {
