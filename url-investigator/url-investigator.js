@@ -259,7 +259,6 @@ function investigateURL() {
     document.getElementById("full-domain-text").innerHTML = fullDomain;
     document.getElementById("domain-text").innerHTML = domain;
     document.getElementById("gd-inurlurl").value = domain;
-    document.getElementById("gd-allinurlurl").value = domain;
     
     if (subdomain != "www" && subdomain != "") {
         document.getElementById("subdomain-container").style.display = "block";
@@ -395,43 +394,31 @@ function buildSearchQuery(id) {
 
     searchText.innerHTML = searchQuery[0];
 
-    if (id == "gd-inurl") {
-        if (document.getElementById(id).checked) { 
-            searchQuery[1] = " inurl:" + document.getElementById(id + "url").value; 
-            document.getElementById("gd-allinurl").checked = false;
+    if (id == "inurl") {
+        if (document.getElementById("gd-inurl").checked) { 
+            if (document.getElementById("gd-allinurl").checked) {
+                searchQuery[1] = " allinurl:" + document.getElementById("gd-inurlurl").value;
+            }
+            else {
+                searchQuery[1] = " inurl:" + document.getElementById("gd-inurlurl").value;
+            }
         }
-        else { 
+        else {
             searchQuery[1] = ""; 
         }
     }
 
-    if (id == "gd-allinurl") {
-        if (document.getElementById(id).checked) { 
-            searchQuery[1] = " allinurl:" + document.getElementById(id + "url").value; 
-            document.getElementById("gd-inurl").checked = false;
+    if (id == "intitle") {
+        if (document.getElementById("gd-intitle").checked) {
+            if (document.getElementById("gd-allintitle").checked) {
+                searchQuery[2] = "allintitle:";
+            }
+            else {
+                searchQuery[2] = "intitle:";
+            }
         }
-        else { 
-            searchQuery[1] = ""; 
-        }
-    }
-
-    if (id == "gd-intitle") {
-        if (document.getElementById(id).checked) { 
-            searchQuery[2] = "intitle:"; 
-            document.getElementById("gd-allintitle").checked = false;
-        }
-        else { 
-            searchQuery[2] = ""; 
-        }
-    }
-
-    if (id == "gd-allintitle") {
-        if (document.getElementById(id).checked) { 
-            searchQuery[2] = "allintitle:"; 
-            document.getElementById("gd-intitle").checked = false;
-        }
-        else { 
-            searchQuery[2] = ""; 
+        else {
+            searchQuery[2] = "";
         }
     }
 
@@ -447,6 +434,11 @@ function buildSearchQuery(id) {
     console.log(id);
 
     console.log(searchQuery);
+
+    // Search Query 0: original search keywords/phrase
+    // Search Query 1: inurl
+    // Search Query 2: intitle
+    // Search Query 3: filetype
 
     if (searchQuery[2] != undefined) { searchText.innerHTML = `${searchQuery[2]}"${searchQuery[0]}"`; }
 

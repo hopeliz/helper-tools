@@ -106,7 +106,7 @@ i {
 
 #options-list li {
     margin: 5px 0;
-    height: 30px;
+    /* height: 30px; */
 }
 
 /* TOOLTIP */
