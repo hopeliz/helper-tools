@@ -164,6 +164,10 @@ function investigateURL() {
     for (let i = 0; i < 5; i ++) {
         title = checkForSymbols(title, false);
     }
+
+    if (title == "") {
+        title = lastPieceParsed[lastPieceParsed.length - 2];
+    }
     
     console.log(`Possible article title: ${title}`);
     
@@ -289,6 +293,7 @@ function investigateURL() {
     if (fileType != "") {
         document.getElementById("filetype-container").style.display = "block";
         document.getElementById("filetype-text").innerHTML = fileType + getFileTypeInfo(fileType);
+        document.getElementById("gd-filetypetype").value = fileType;
     }
     
     if (alias != "") {
@@ -372,8 +377,6 @@ function copyToClipboard(textToCopy, tooltipID) {
 
     document.getElementById(tooltipID).innerHTML = "Copied";
 
-    //alert("The text has been copied.");
-
     return copiedText;
 }
 
@@ -432,6 +435,15 @@ function buildSearchQuery(id) {
         }
     }
 
+    if (id == "gd-filetype") {
+        if (document.getElementById(id).checked) { 
+            searchQuery[3] = ' filetype:"' + document.getElementById(id + "type").value + '"';
+        }
+        else { 
+            searchQuery[3] = ""; 
+        }
+    }
+
     console.log(id);
 
     console.log(searchQuery);
@@ -439,6 +451,9 @@ function buildSearchQuery(id) {
     if (searchQuery[2] != undefined) { searchText.innerHTML = `${searchQuery[2]}"${searchQuery[0]}"`; }
 
     if (searchQuery[1] != undefined) { searchText.innerHTML += searchQuery[1]; }
+    else { searchText.innerHTML += ""; }
+
+    if (searchQuery[3] != undefined) { searchText.innerHTML += searchQuery[3]; }
     else { searchText.innerHTML += ""; }
 }
 

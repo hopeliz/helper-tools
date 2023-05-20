@@ -165,16 +165,14 @@ const fileTypes = [
     }
 ];
     
-//console.log(fileTypes);
-    
 function getFileTypeInfo(ext) {
     ext = ext.toLowerCase();
+    let info = "";
     for (let x in fileTypes) {
         if (fileTypes[x].extension == ext) {
-            return " - " + fileTypes[x].type;
-        }
-        else {
-            return "";
+            info = " - " + fileTypes[x].type;
         }
     }
+
+    return info;
 }

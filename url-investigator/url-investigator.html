@@ -155,8 +155,8 @@
                     <input type="checkbox" name="allintitle" id="gd-allintitle" onchange="buildSearchQuery('gd-allintitle')"> Search in webpage title (all keywords)
                 </li>
                 <li>
-                    <input type="checkbox" name="filetype" id="gd-filetype"> Search for filetype:
-                    <input type="text" name="filetypetype" id="gd-filetypetype" value="">
+                    <input type="checkbox" name="filetype" id="gd-filetype" onchange="buildSearchQuery('gd-filetype')"> Search for filetype:
+                    <input type="text" name="filetypetype" id="gd-filetypetype" value="" onkeyup="buildSearchQuery('gd-filetypetype')">
                 </li>
             </ul>
         </div>
