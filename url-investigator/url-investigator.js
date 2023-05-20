@@ -412,6 +412,32 @@ function buildSearchQuery(id) {
         }
     }
 
+    if (id == "gd-intitle") {
+        if (document.getElementById(id).checked) { 
+            searchQuery[2] = "intitle:"; 
+            document.getElementById("gd-allintitle").checked = false;
+        }
+        else { 
+            searchQuery[2] = ""; 
+        }
+    }
+
+    if (id == "gd-allintitle") {
+        if (document.getElementById(id).checked) { 
+            searchQuery[2] = "allintitle:"; 
+            document.getElementById("gd-intitle").checked = false;
+        }
+        else { 
+            searchQuery[2] = ""; 
+        }
+    }
+
+    console.log(id);
+
+    console.log(searchQuery);
+
+    if (searchQuery[2] != undefined) { searchText.innerHTML = `${searchQuery[2]}"${searchQuery[0]}"`; }
+
     if (searchQuery[1] != undefined) { searchText.innerHTML += searchQuery[1]; }
     else { searchText.innerHTML += ""; }
 }

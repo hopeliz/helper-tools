@@ -149,10 +149,10 @@
                     <input type="text" name="allinurlurl" id="gd-allinurlurl" value="" onkeyup="buildSearchQuery('gd-allinurl')">
                 </li>
                 <li>
-                    <input type="checkbox" name="intitle" id="gd-intitle"> Search in webpage title (one keyword)
+                    <input type="checkbox" name="intitle" id="gd-intitle" onchange="buildSearchQuery('gd-intitle')"> Search in webpage title (one keyword)
                 </li>
                 <li>
-                    <input type="checkbox" name="allintitle" id="gd-allintitle"> Search in webpage title (all keywords)
+                    <input type="checkbox" name="allintitle" id="gd-allintitle" onchange="buildSearchQuery('gd-allintitle')"> Search in webpage title (all keywords)
                 </li>
                 <li>
                     <input type="checkbox" name="filetype" id="gd-filetype"> Search for filetype:
