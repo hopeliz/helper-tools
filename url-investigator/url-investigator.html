@@ -141,12 +141,15 @@
                     <input type="checkbox" name="exact" id="gd-exact" onchange="buildSearchQuery('gd-exact')"> Exact Phrase
                 </li>
                 <li>
-                    <input type="checkbox" name="inurl" id="gd-inurl" onchange="buildSearchQuery('inurl')"> <label for="inurl">Search in this URL:</label> <input type="text" name="inurlurl" id="gd-inurlurl" value="" onkeyup="buildSearchQuery('inurl')"> 
-                    <input type="checkbox" name="allinurl" id="gd-allinurl" onchange="buildSearchQuery('inurl')"> <label for="allinurl">All keywords</label>
+                    <input type="checkbox" name="site" id="gd-site" onchange="buildSearchQuery('gd-site')"> <label for="site">Search in this website:</label> <input type="text" name="siteURL" id="gd-siteURL" value="" onkeyup="buildSearchQuery('gd-site')">
                 </li>
                 <li>
                     <input type="checkbox" name="intitle" id="gd-intitle" onchange="buildSearchQuery('intitle')"> <label for="intitle">Search in webpage titles</label> 
                     <input type="checkbox" name="allintitle" id="gd-allintitle" onchange="buildSearchQuery('intitle')"> <label for="allintitle">All keywords</label>
+                </li>
+                <li>
+                    <input type="checkbox" name="inurl" id="gd-inurl" onchange="buildSearchQuery('inurl')"> <label for="inurl">Search in URLs </label>
+                    <input type="checkbox" name="allinurl" id="gd-allinurl" onchange="buildSearchQuery('inurl')"> <label for="allinurl">All keywords</label>
                 </li>
                 <li>
                     <input type="checkbox" name="filetype" id="gd-filetype" onchange="buildSearchQuery('gd-filetype')"> Search for filetype:

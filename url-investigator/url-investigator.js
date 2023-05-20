@@ -258,7 +258,7 @@ function investigateURL() {
     
     document.getElementById("full-domain-text").innerHTML = fullDomain;
     document.getElementById("domain-text").innerHTML = domain;
-    document.getElementById("gd-inurlurl").value = domain;
+    document.getElementById("gd-siteURL").value = domain;
     
     if (subdomain != "www" && subdomain != "") {
         document.getElementById("subdomain-container").style.display = "block";
@@ -388,24 +388,21 @@ function buildSearchQuery(id) {
     let searchText = document.getElementById("search-text");
 
     if (id == "gd-exact") {
-        if (document.getElementById(id).checked) { searchQuery[0] = `"${searchQuery[0]}"`; }
+        if (document.getElementById("gd-exact").checked) { searchQuery[0] = `"${searchQuery[0]}"`; }
         else { searchQuery[0] = title; }
+
+        printSearchQuery();
     }
 
-    searchText.innerHTML = searchQuery[0];
-
-    if (id == "inurl") {
-        if (document.getElementById("gd-inurl").checked) { 
-            if (document.getElementById("gd-allinurl").checked) {
-                searchQuery[1] = " allinurl:" + document.getElementById("gd-inurlurl").value;
-            }
-            else {
-                searchQuery[1] = " inurl:" + document.getElementById("gd-inurlurl").value;
-            }
+    if (id == "gd-site") {
+        if (document.getElementById(id).checked) { 
+            searchQuery[1] = ` site:"${document.getElementById("gd-siteURL").value}"`;
         }
         else {
             searchQuery[1] = ""; 
         }
+
+        printSearchQuery();
     }
 
     if (id == "intitle") {
@@ -420,6 +417,8 @@ function buildSearchQuery(id) {
         else {
             searchQuery[2] = "";
         }
+
+        printSearchQuery();
     }
 
     if (id == "gd-filetype") {
@@ -429,18 +428,63 @@ function buildSearchQuery(id) {
         else { 
             searchQuery[3] = ""; 
         }
+
+        printSearchQuery();
+    }
+
+    if (id == "inurl") {
+        if (document.getElementById("gd-inurl").checked) {
+            if (document.getElementById("gd-allinurl").checked) {
+                searchQuery[4] = "allinurl:";
+            }
+            else {
+                searchQuery[4] = "inurl:";
+            }
+        }
+        else {
+            searchQuery[4] = "";
+        }
+
+        printSearchQuery();
     }
 
     console.log(id);
+}
 
+function printSearchQuery() {
     console.log(searchQuery);
 
+    let searchText = document.getElementById("search-text");
+
     // Search Query 0: original search keywords/phrase
-    // Search Query 1: inurl
+    // Search Query 1: site
     // Search Query 2: intitle
     // Search Query 3: filetype
+    // Search Query 4: inurl
 
-    if (searchQuery[2] != undefined) { searchText.innerHTML = `${searchQuery[2]}"${searchQuery[0]}"`; }
+    searchText.innerHTML = searchQuery[0];
+
+    if (searchQuery[2] != undefined) {
+        if (searchQuery[2] != "") { 
+            if (document.getElementById("gd-exact").checked) { 
+                searchText.innerHTML = `${searchQuery[2]}${searchQuery[0]}`; }
+            else { searchText.innerHTML = `${searchQuery[2]}"${searchQuery[0]}"`; }
+        }
+        else {
+            searchText.innerHTML = searchQuery[0];
+        }
+    }
+
+    if (searchQuery[4] != undefined) {
+        if (searchQuery[4] != "") { 
+            if (document.getElementById("gd-exact").checked) { 
+                searchText.innerHTML = `${searchQuery[4]}${searchQuery[0]}`; }
+            else { searchText.innerHTML = `${searchQuery[4]}"${searchQuery[0]}"`; }
+        }
+        else {
+            searchText.innerHTML = searchQuery[0];
+        }
+    }
 
     if (searchQuery[1] != undefined) { searchText.innerHTML += searchQuery[1]; }
     else { searchText.innerHTML += ""; }
